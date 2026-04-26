@@ -3,17 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance Tracker</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Attendance Tracker | 10-Topaz</title>
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.2/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.5.2/core.js"></script> <!-- Pyscript CDN-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Jim+Nightshade&family=Kapakana:wght@300..400&family=Pirata+One&display=swap" rel="stylesheet"> <!-- Pirata, Almendra, Jim Nightshade, and Kapakana Fonts-->
+    <script type="module" src="https://pyscript.net/releases/2024.5.2/core.js"></script>
     
     <style>
         * {
@@ -24,7 +16,7 @@
         
         body {
             font-family: 'Times New Roman', Times, serif;
-            background: #ffffff;
+            background-color: #ffffff;
             padding: 40px 20px;
             color: #000000;
         }
@@ -33,23 +25,38 @@
             max-width: 900px;
             margin: 0 auto;
             background: #ffffff;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #000000;
+            border-radius: 0px;
             padding: 30px;
+            box-shadow: none;
         }
         
         h1 {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 24px;
-            font-weight: normal;
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
             margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #000000;
+        }
+        
+        h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 15px;
             text-align: center;
         }
         
         .input-area {
             margin-bottom: 30px;
             padding: 20px;
-            border: 1px solid #cccccc;
-            background: #fafafa;
+            background: #f5f5f5;
+            border-radius: 0px;
+            border: 1px solid #000000;
         }
         
         .row {
@@ -63,15 +70,19 @@
         label {
             font-family: 'Times New Roman', Times, serif;
             font-size: 14px;
-            min-width: 100px;
+            font-weight: bold;
+            min-width: 140px;
+            color: #000000;
         }
         
         select, input {
             font-family: 'Times New Roman', Times, serif;
             font-size: 14px;
-            padding: 6px 10px;
-            border: 1px solid #999999;
+            padding: 8px 12px;
+            border: 1px solid #000000;
+            border-radius: 0px;
             background: #ffffff;
+            color: #000000;
         }
         
         select {
@@ -85,40 +96,79 @@
         button {
             font-family: 'Times New Roman', Times, serif;
             font-size: 14px;
-            padding: 6px 15px;
-            background: #f0f0f0;
-            border: 1px solid #999999;
+            padding: 8px 20px;
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #000000;
+            border-radius: 0px;
             cursor: pointer;
             margin-right: 10px;
         }
         
         button:hover {
-            background: #e0e0e0;
+            background-color: #333333;
+            color: #ffffff;
         }
         
         .graph-container {
             margin-top: 30px;
             padding: 20px;
-            border: 1px solid #cccccc;
-            background: #ffffff;
-        }
-        
-        .graph-container h3 {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 16px;
-            font-weight: normal;
-            margin-bottom: 15px;
-            text-align: center;
+            background: #f5f5f5;
+            border-radius: 0px;
+            border: 1px solid #000000;
         }
         
         #plot {
             width: 100%;
             text-align: center;
+            margin-top: 15px;
+        }
+        
+        .status-msg {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 0px;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        .status-success {
+            background-color: #e0e0e0;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+        
+        .stats {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .placeholder-text {
+            text-align: center;
+            color: #666666;
+            font-style: italic;
+            padding: 40px 20px;
+            background: #ffffff;
+            border: 1px solid #cccccc;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #000000;
+            font-size: 12px;
+            color: #000000;
         }
     </style>
     
     <py-config>
         packages = ["matplotlib", "numpy"]
+        [[fetch]]
+        files = ["main.py"]
     </py-config>
 </head>
 <body>
@@ -143,16 +193,22 @@
             </div>
             
             <div class="row">
-                <button id="recordBtn">Record Absence</button>
-                <button id="resetBtn">Reset All</button>
+                <button id="recordBtn">Record Absences</button>
+                <button id="resetBtn">Reset All Data</button>
             </div>
+            <div id="statusMsg" class="status-msg" style="display:none;"></div>
+            <div id="statsDisplay" class="stats"></div>
         </div>
         
         <div class="graph-container">
             <h3>Weekly Absence Report</h3>
-            <div id="plot"></div>
+            <div id="plot">
+                <div class="placeholder-text">Click "Record Absences" to view the graph</div>
+            </div>
         </div>
     </div>
+
+    <footer>Attendance Tracker | Built with Python, NumPy & Matplotlib</footer>
 
     <py-script src="main.py"></py-script>
 </body>
